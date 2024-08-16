@@ -1,0 +1,219 @@
+We will learn HTML AND CSS 
+Create a Project VSCODE Landing Page
+
+
+// variable -> var, let, const
+
+// let name = "sanjay";
+// let age = 24;
+// let isStudent = true;
+
+// var name = "sanjay";
+// name = 24;
+// name = true;
+
+// console.log(name);
+
+// assignment :
+
+// var color = "black";
+// var height = 21;
+// const likePizza = true;
+
+// console.log(color);
+// console.log(height);
+// console.log(likePizza);
+
+// assignment
+
+// function sum(a, b) {
+//   return a + b;
+// }
+
+// let value = sum("1", "3");//return 13
+// let value = sum(1, 3);//return 4
+// console.log(value);
+
+// assignment
+
+// function canVote(age) {
+//   if (age > 18) return true;
+//   return false;
+// }
+
+// sanjay = canVote(24);
+// console.log(sanjay);
+
+// assignment : sum of number
+
+// function sum(number) {
+//   let sum = 0;
+//   for (let i = 1; i <= number; i++) {
+//     sum += i;
+//   }
+//   return sum;
+// }
+
+// let value = sum(6);
+// console.log(value);
+
+// assignment : if else -> even / Odd
+
+// function check(number) {
+//   if (number % 2 == 0) return "The Number is Even";
+//   else return "The Number is Odd";
+// }
+
+// numberis = check(1);
+// console.log(numberis);
+
+// function : greeting a person
+
+// function greet(name) {
+//   return "Hello " + name;
+// }
+
+// greet = greet("sanjay");
+// console.log(greet);
+
+// array
+// let names = ["sanjay", "omkar", "praneet", "lalit"];
+// console.log(names.length);
+// console.log(names[1]);
+
+// objects
+// let student = {
+//   name: "sanjay",
+//   age: 24,
+//   address: {
+//     roomNo: 21,
+//     steet: "nana nani park",
+//     city: "virar",
+//     state: "maharashtra",
+//     country: "India",
+//   },
+// };
+
+// console.log(student);
+// console.log(student.name);
+
+// array of Object
+
+// let students = [
+//   {
+//     name: "sanjay",
+//     age: 24,
+//   },
+//   {
+//     name: "omkar",
+//     age: 21,
+//   },
+//   {
+//     name: "roshni",
+//     age: 17,
+//   },
+// ];
+
+// console.log(students);
+// console.log(students[1]);
+// console.log(students[1].name);
+
+// Complex Type Assignment
+
+// 1.take Object(name and age) as input and greet
+// let sanjay = {
+//   name: "sanjay",
+//   age: 24,
+// };
+
+// function greet(user) {
+//   return ${user.name} is ${user.age} years old.;
+// }
+
+// console.log(greet(sanjay));
+
+// 2.
+
+let sanjay = {
+  name: "sanjay",
+  age: 24,
+  gender: "male",
+};
+
+// function greet(user) {
+// let salutation="";
+//   if (user.gender.toUpperCase() == "MALE") salutation = "Mr";
+//   else if (user.gender.toUpperCase() == "FEMALE") salutation = "Mrs";
+//   else salutation = "Others";
+//   return Hi ${salutation} ${user.name}, your age is ${user.age}.;
+// }
+
+// console.log(greet(sanjay));
+
+// 3.
+// function canVote(user) {
+//   let salutation = "";
+//   let isEligible = "not eligible";
+//   if (user.gender.toUpperCase() == "MALE") salutation = "Mr";
+//   else if (user.gender.toUpperCase() == "FEMALE") salutation = "Mrs";
+//   else salutation = "Others";
+
+//   if (user.age > 18) isEligible = "eligible";
+//   return Hi ${salutation} ${user.name}, your age is ${user.age}. You are ${isEligible} to vote;
+// }
+
+// console.log(canVote(sanjay));
+
+// 4.
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+
+// function checkEven(arr) {
+//   let even = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] % 2 == 0) {
+//       even.push(arr[i]);
+//     }
+//   }
+//   return even;
+// }
+
+// let evenNumbers = checkEven(arr);
+// console.log(evenNumbers);
+
+// using filter
+
+// function even(ele) {
+//   return ele % 2 == 0;
+// }
+
+// let evenNumbers = arr.filter(even);
+// console.log(evenNumbers);
+
+// 5.
+
+let users = [
+  {
+    name: "sanjay",
+    age: 24,
+    gender: "male",
+  },
+  {
+    name: "roshni",
+    age: 22,
+    gender: "female",
+  },
+  {
+    name: "ajay",
+    age: 15,
+    gender: "male",
+  },
+];
+
+let canVoteList = users.filter((ele) => ele.age > 18);
+console.log(canVoteList);
+
+let maleVoterCandidate = users.filter(
+  (ele) => ele.age > 18 && ele.gender.toUpperCase() == "MALE"
+);
+console.log(maleVoterCandidate);
