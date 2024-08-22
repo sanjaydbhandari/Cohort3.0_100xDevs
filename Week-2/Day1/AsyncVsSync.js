@@ -18,3 +18,19 @@ fs.readFile('./concept1.txt','utf-8',(err,content)=>{
 fs.readFile('./concept.txt','utf-8',(err,content)=>{
     console.log(content);
 })
+
+// eg:
+
+const fs = require("fs");
+
+fs.readFile("a.txt", "utf-8", function (err, contents) {
+  console.log(contents);
+});
+
+fs.readFile("b.txt", "utf-8", function (err, contents) {
+  console.log(contents);
+});
+
+fs.readFile("a.txt", "utf-8", function (err, contents) {
+  console.log(contents);
+});
