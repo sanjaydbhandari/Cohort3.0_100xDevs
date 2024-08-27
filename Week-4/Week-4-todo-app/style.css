@@ -1,0 +1,80 @@
+:root{
+    --bg-color: #000;
+    --text-color: #ffffff;
+    --fore-bg-color: #9c8b8b4f;
+    --fore-hover-bg-color: #3b3b3b86;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color);
+    color: var(--text-color);
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.navbar span{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    
+}
+
+.navbar{
+    width: 1200px;
+    padding: 1rem 2rem;
+}
+
+.container{
+    width: 1200px;
+    display: grid;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    gap: 2rem;
+}
+
+.collection-header{
+    font-size: 1rem;
+    font-weight: 900;
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    cursor: pointer;
+    padding: 0.8em 1.7em;
+    background: var(--fore-bg-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    outline: none;
+    font-weight: 900;
+    border: none;
+}
+
+button:hover{
+    background: var(--fore-hover-bg-color);
+}
+
+.collection-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+}
+
+.collection{
+    border: 1px solid var(--fore-bg-color);
+    border-radius: 6px;
+    padding: 1rem ;
+}
+
+.collection h1{
+    font-size: 1rem;
+}
