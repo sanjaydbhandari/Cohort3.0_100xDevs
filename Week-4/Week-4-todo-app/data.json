@@ -1,14 +1,26 @@
 [
     {
         "id":"1",
-        "collectionName": "Personal"
+        "collectionName": "Personal",
+        "tasks" :[{
+            "id":1,
+            "task": "buy a mouse",
+            "isDone": false
+        },
+        {
+            "id":2,
+            "task": "buy a Keyboard",
+            "isDone": false
+        }]
     },
     {
-        "id":"1",
-        "collectionName": "Grocery"
+        "id":"2",
+        "collectionName": "Grocery",
+        "tasks" :[]
     },
     {
-        "id":"1",
-        "collectionName": "Fitness"
+        "id":"3",
+        "collectionName": "Fitness",
+        "tasks" :[]
     }
 ]
