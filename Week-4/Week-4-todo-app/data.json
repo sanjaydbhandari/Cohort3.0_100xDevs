@@ -1,6 +1,6 @@
 [
     {
-        "id":"1",
+        "id":1,
         "collectionName": "Personal",
         "tasks" :[{
             "id":1,
@@ -11,16 +11,19 @@
             "id":2,
             "task": "buy a Keyboard",
             "isDone": false
-        }]
+            }],
+        "isVisible": true
     },
     {
-        "id":"2",
+        "id":2,
         "collectionName": "Grocery",
-        "tasks" :[]
+        "tasks" :[],
+        "isVisible": true
     },
     {
-        "id":"3",
+        "id":3,
         "collectionName": "Fitness",
-        "tasks" :[]
+        "tasks" :[],
+        "isVisible": true
     }
 ]

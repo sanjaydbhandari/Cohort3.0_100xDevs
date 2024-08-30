@@ -1,14 +1,8 @@
-let data = fetch('./data.json').then((res)=>res.json())
+let data = fetch('./data.json').then((res)=>res.json());
 const bodyELe = document.querySelector('body');
 const model = document.querySelector('.model');
 const containerELe = document.querySelector('.container');
 const CollectionInputEle = document.querySelector('.collection-input-container');
-
-// data.then((collections)=>{
-//     collections.map((collection)=>{
-//         console.log(collection)
-//     })
-// })
 
 function checkTaskCompleted(id,tasks){
     let count = 0;
@@ -40,6 +34,17 @@ function showContainer(ele,data){
             CCELe.appendChild(CCDiv);
         })
     })
+}
+function createCategory(ele){
+    const collection = document.querySelector(ele).value;
+    console.log(data)
+    let category = {
+        id:data.length,
+        collectionName:collection.toString(),
+        task:[],
+        isvisible:true
+    }
+    data.push(category);
 }
 
 showContainer('.collection-container',data)
