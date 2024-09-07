@@ -1,0 +1,24 @@
+{
+  "name": "todo_backend",
+  "version": "1.0.0",
+  "description": "TODO CRUD API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "test-index.js"
+  },
+  "keywords": [
+    "TODO",
+    "CRUD",
+    "API"
+  ],
+  "author": "sanjay bhandari",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "path": "^0.12.7",
+    "todo_backend": "file:"
+  }
+}
