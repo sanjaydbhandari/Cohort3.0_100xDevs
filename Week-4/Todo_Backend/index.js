@@ -5,14 +5,29 @@ import path from 'path'
 const app = express();
 const todoFile = "./todos.json";
 
+const response = (status,message,data=[]) => {
+    return {
+        "status":status,
+        "message":message,
+        "data":data
+    }
+}
+
 const readTodos = () => {
     let todos = fs.readFileSync(todoFile, "utf-8");
     return JSON.parse(todos);
 }
 
 app.get('/todos',(req,res)=>{
-    let todos = readTodos()
-    res.json(todos)
+    try{
+        let todos = readTodos();
+        if(!todos)
+            res.send(response(200,"Data Fetch Succussfully",todos));
+        else
+            res.send(response(400,"Data Not Found",todos));
+    }catch(err){
+        res.send({"status":500,"error":err});
+    }
 })
 
 app.get('/todos:id',(req,res)=>{
