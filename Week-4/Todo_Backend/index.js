@@ -63,7 +63,6 @@ app.get('/todos/:id',(req,res)=>{
 app.get('/filterTodo',(req,res)=>{
     try{
         let todos = readTodos();
-        console.log(req.body.status)
         let todo = todos.filter(todo => todo.status == req.body.status && todo.priority == req.body.priority && todo.deleted==false);
         if(!todo)
             return res.status(400).json(response(400,`Invalid Id ${req.params.id}! Todo Not Found`));
