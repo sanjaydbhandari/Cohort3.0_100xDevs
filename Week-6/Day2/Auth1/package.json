@@ -1,0 +1,20 @@
+{
+  "name": "day2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "modules",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "day2": "file:",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.4"
+  }
+}
