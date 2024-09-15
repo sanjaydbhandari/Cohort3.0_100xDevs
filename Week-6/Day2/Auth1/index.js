@@ -20,8 +20,7 @@ app.post('/signup',(req,res)=>{
             password
         });
         return res.status(200).json({status:200,message:"User Signup Succussfully!"})
-    }
-    else
+    }else
     return res.status(400).json({status:400,message:"Invalid username and password!"})
 });
 
@@ -36,12 +35,25 @@ app.post('/signin',(req,res)=>{
     return res.status(400).json({status:400,message:"Invalid username and password!"})
 })
 
-app.post('/courses',(res,req)=>{
+const auth = (req,res,next) => { 
     let authenticatedUser = jwt.verify(req.headers.token,SECRET_KEY);
-    console.log(authenticatedUser)
-    if(authenticatedUser)
-        return res.status(200).json({status:200,message:"Authenticated User!",courses:[]})
-    return res.status(400).json({status:400,message:"unAuthenticated User!"})
+    if(authenticatedUser){
+        req.username = authenticatedUser.username;
+        next();
+    }else{
+        res.status(400).json({
+            message : "u are not logged in"
+        })
+    }
+}
+
+app.post('/courses',auth,(req,res)=>{
+    try{
+        if(true)
+            res.status(200).json({status:200,message:"Authenticated User!",courses:[]});
+    }catch(err){
+        res.status(500).json({status:500,message:err.message})
+    }
 })
 
 app.listen(3000)
