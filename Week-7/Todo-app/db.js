@@ -13,7 +13,7 @@ const User = new Schema({
 const todo = new Schema({
     userId: ObjectId,
     description: String,
-    done: Boolean,x
+    done: Boolean,
 })
 
 const UserModel = mongoose.model('users',User)
