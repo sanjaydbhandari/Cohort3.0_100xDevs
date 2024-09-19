@@ -10,14 +10,14 @@ const User = new Schema({
     password : String,
 })
 
-const todo = new Schema({
+const Todo = new Schema({
     userId: ObjectId,
     description: String,
     done: Boolean,
 })
 
 const UserModel = mongoose.model('users',User)
-const TodoModel = mongoose.model('todos',todo)
+const TodoModel = mongoose.model('todos',Todo)
 
 module.exports={
     UserModel,

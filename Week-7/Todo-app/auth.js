@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 const  JWT_SECRET = "ilovecoding";
 
 function auth(req,res,next){
-    const token = req.headers.token;
+    const token = req.headers.Authorization;
 
     const response = jwt.verify(token,JWT_SECRET);
 
@@ -16,6 +16,4 @@ function auth(req,res,next){
     }
 }
 
-module.exports={
-    auth,JWT_SECRET
-}
+module.exports=auth;
