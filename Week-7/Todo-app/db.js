@@ -10,7 +10,7 @@ const User = new Schema({
     password : String,
 })
 
-const Todo = new Schema({
+const Todo = new Schema({ 
     userId: ObjectId,
     description: String,
     done: Boolean,

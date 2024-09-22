@@ -28,14 +28,16 @@ const validationSchema = z.object({
     // name:z.string().min(2,{message:"Name must be at least 2 characters long."}).nonempty({message:"Name is required."})
 }) 
 
-const taskSchema = z.object({
-    task: z.string().nonempty({ message: 'Task is required.' }),
-    priority: z.enum(['High', 'Medium', 'Low']).nonempty({ message: 'Priority is required.' }),
-    status: z.enum(['InProgress', 'Pending', 'Completed']).nonempty({ message: 'Status is required.' }),
-    deadline: z.string().nonempty({ message: 'Deadline is required.' }),
-    created_at: z.number().positive({ message: 'Timestamp must be a positive number.' }),
-    deleted: z.boolean(),
-  });
+// const taskSchema = z.object({
+//     task: z.string().nonempty({ message: 'Task is required.' }),
+//     priority: z.string().nonempty({ message: 'Priority is required.' }),
+//     // z.enum(['High', 'Medium', 'Low']).nonempty({ message: 'Priority is required.' }),
+//     status: z.string().nonempty({ message: 'Status is required.' }),
+//     // z.enum(['InProgress', 'Pending', 'Completed']).nonempty({ message: 'Status is required.' }),
+//     deadline: z.string().nonempty({ message: 'Deadline is required.' }),
+//     created_at: z.number().positive({ message: 'Timestamp must be a positive number.' }),
+//     deleted: z.boolean(),
+//   });
 
 app.post('/signup',async (req,res)=>{
     try{
@@ -48,7 +50,9 @@ app.post('/signup',async (req,res)=>{
             password
         });
 
-        if(userFound) return res.status(400).json({message:"User Already Exist. Please Login"})
+        // console.log(userFound)
+
+        if(userFound) return res.status(400).json({message:"User Already Exist. Please Login"});
 
         const newUser = await UserModel.create({
                 email:email,
@@ -71,7 +75,7 @@ app.post('/signin',async (req,res)=>{
         password: password,
     });
     
-    console.log(response)
+    // console.log(response)
     if(userFound){
         const token = jwt.sign({
             id:userFound._id.toString()
