@@ -7,6 +7,12 @@ const app = express();
 const {z} = require('zod')
 const  JWT_SECRET = "ilovecoding";
 
+const {TodoRouter} = require('./Routes/TodoRoutes')
+const {UserRouter} = require('./Routes/UserRoutes')
+
+app.post("/api/v1/users",UserRouter)
+app.post("/api/v1/todos",TodoRouter)
+
 mongoose.connect("mongodb+srv://sanjaybhandari1211:Bhandari%4012@cluster0.otn4gai.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
 app.use(express.json());
