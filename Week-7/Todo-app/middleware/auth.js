@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const  JWT_SECRET = "ilovecoding";
+const JWT_SECRET = require('../config/config').JWT_SECRET;
 
 function auth(req,res,next){
     const token = req.headers.Authorization;
