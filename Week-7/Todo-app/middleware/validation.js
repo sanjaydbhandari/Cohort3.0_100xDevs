@@ -24,6 +24,6 @@ const taskSchema = z.object({
     deleted: z.boolean(),
   });
 
-  modules.exports={
+  module.exports={
     validationSchema,taskSchema
   }

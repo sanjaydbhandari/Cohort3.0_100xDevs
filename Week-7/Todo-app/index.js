@@ -1,20 +1,19 @@
 const express = require('express');
 const app = express();
-const config = require('./config/config')
-const DB_URL = config.DB_URL;
+const config = require('./config/config');
 const PORT = config.PORT;
-const auth = require('./middleware/auth')
-const mongoose = require('mongoose');
+const {auth} = require('./middleware/auth')
+const {dbConnect}=require("./config/dbConnect");
+const {todoRouter} = require('./routes/todo.route');
+const {userRouter} = require('./routes/user.route');
 
-mongoose.connect(DB_URL);  
-const {todoRouter} = require('./routes/todo.route')
-const {userRouter} = require('./routes/user.route')
-
+console.log(dbConnect());
 app.use(express.json());
-app.post("/api/v1/users/signin",userRouter)
-app.post("/api/v1/todos",todoRouter)
+app.use(auth)
+app.use("/api/v1/users",userRouter);
+app.use("/api/v1/todos",todoRouter);
 
 app.listen(PORT,()=>{
-    console.log(`app is listen on port ${PORT}`)
+    console.log(`app is listen on port ${PORT}`);
 })
 

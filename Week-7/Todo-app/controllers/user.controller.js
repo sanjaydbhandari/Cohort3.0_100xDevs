@@ -1,8 +1,7 @@
-const { PORT,DB_URL,JWT_SECRET } = require('./config/config')
-const todoModel = require('./models/todo.model')
-const userModel = require('./models/user.model')
+const { PORT,DB_URL,JWT_SECRET } = require('../config/config')
+const todoModel = require('../models/todo.model')
+const userModel = require('../models/user.model')
 const jwt = require('jsonwebtoken');
-// const mongoose = require('mongoose');
 const signupValidation = require('../middleware/validation')
 
 const signUp = async (req,res)=>{
@@ -11,7 +10,7 @@ const signUp = async (req,res)=>{
         const password = signupValidation.safeParse(req.body.password);
         // const name = validationSchema.safeParse(req.body.name);
 
-        const userFound = userModel.findOne({
+        const userFound = await userModel.findOne({
             email,
             password
         });
@@ -53,4 +52,8 @@ const signIn = async (req,res)=>{
             message:"Invalid Creds"
         })
     }
+}
+
+module.exports={
+    signUp,signIn
 }
