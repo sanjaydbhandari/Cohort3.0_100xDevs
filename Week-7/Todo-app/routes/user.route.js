@@ -7,4 +7,4 @@ userRouter.post('/signup',signUp)
 
 userRouter.post('/signin',signIn)
 
-module.exports={userRouter:userRouter};
+module.exports={userRouter};
