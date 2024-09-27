@@ -1,33 +1,35 @@
 const { PORT,DB_URL,JWT_SECRET } = require('../config/config')
-const todoModel = require('../models/todo.model')
 const userModel = require('../models/user.model')
 const jwt = require('jsonwebtoken');
-const signupValidation = require('../middleware/validation')
+const {userSchema} = require('../middleware/validation')
 
 const signUp = async (req,res)=>{
     try{
-        const email = signupValidation.safeParse(req.body.email);
-        const password = signupValidation.safeParse(req.body.password);
+        const validationResult = userSchema.safeParse(req.body);
         // const name = validationSchema.safeParse(req.body.name);
+
+        if(!validationResult.success)
+            return res.status(400).json({error:validationResult.error.format()})
+
+        const {email,password}=validationResult.data;
+        console.log(email,password)
 
         const userFound = await userModel.findOne({
             email,
             password
         });
 
-        // console.log(userFound)
-
-        if(userFound) return res.status(400).json({message:"User Already Exist. Please Login"});
+        if(userFound) return res.status(400).json({"message":"User Already Exist. Please Login"});
 
         const newUser = await userModel.create({
-                email:email,
-                password:password,
+                email,
+                password,
         });
 
-        if(newUser) res.json({message:"You are logged in"})
+        if(newUser) res.json({message:"You have successfully signed up!"})
 
     }catch(err){
-        res.status(400).json({message:err.massage})
+        res.status(400).json({"message":err.message})           
     }
 }
 
@@ -49,7 +51,7 @@ const signIn = async (req,res)=>{
         res.json({token})
     }else{
         res.status(403).json({
-            message:"Invalid Creds"
+            "message":"Invalid Creds"
         })
     }
 }
