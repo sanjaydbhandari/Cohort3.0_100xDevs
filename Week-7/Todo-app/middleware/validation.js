@@ -13,18 +13,18 @@ const userSchema = z.object({
     // name:z.string().min(2,{message:"Name must be at least 2 characters long."}).nonempty({message:"Name is required."})
 }) 
 
-// const taskSchema = z.object({
-//     task: z.string().nonempty({ message: 'Task is required.' }),
-//     priority: z.string().nonempty({ message: 'Priority is required.' }),
-//     // z.enum(['High', 'Medium', 'Low']).nonempty({ message: 'Priority is required.' }),
-//     status: z.string().nonempty({ message: 'Status is required.' }),
-//     // z.enum(['InProgress', 'Pending', 'Completed']).nonempty({ message: 'Status is required.' }),
-//     deadline: z.string().nonempty({ message: 'Deadline is required.' }),
-//     created_at: z.number().positive({ message: 'Timestamp must be a positive number.' }),
-//     deleted: z.boolean(),
-// });
+const taskSchema = z.object({
+    task: z.string().nonempty({ message: 'Task is required.' }),
+    priority: z.string().nonempty({ message: 'Priority is required.' }),
+    // z.enum(['High', 'Medium', 'Low']).nonempty({ message: 'Priority is required.' }),
+    status: z.string().nonempty({ message: 'Status is required.' }),
+    // z.enum(['InProgress', 'Pending', 'Completed']).nonempty({ message: 'Status is required.' }),
+    deadline: z.string().nonempty({ message: 'Deadline is required.' }),
+    created_at: z.number().positive({ message: 'Timestamp must be a positive number.' }),
+    deleted: z.boolean(),
+});
 
 module.exports={
   userSchema,
-  // taskSchema
+  taskSchema
 }

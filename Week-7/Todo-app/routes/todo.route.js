@@ -1,8 +1,8 @@
 const {Router} = require("express");
+const {auth} = require('../middleware/auth')
 
 const todoRouter = Router();
-
-todoRouter.get('/',(req,res)=>{
+todoRouter.get('/',auth,(req,res)=>{
     res.json({message:"todos list"})
 })
 todoRouter.get('/:id',(req,res)=>{

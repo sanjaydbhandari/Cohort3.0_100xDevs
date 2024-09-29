@@ -3,7 +3,6 @@ const JWT_SECRET = require('../config/config').JWT_SECRET;
 
 function auth(req,res,next){
     const token = req.headers.Authorization;
-
     const response = jwt.verify(token,JWT_SECRET);
 
     if(response){
