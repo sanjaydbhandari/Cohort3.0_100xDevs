@@ -32,25 +32,33 @@ const signUp = async (req,res)=>{
 }
 
 const signIn = async (req,res)=>{
-    const email = signupValidation.safeParse(req.body.email);
-    const password = signupValidation.safeParse(req.body.password);
-    
-    const userFound = await userModel.findOne({
-        email: email,
-        password: password,
-    });
-    
-    // console.log(response)
-    if(userFound){
+    try{
+        const validationResult = userSchema.safeParse(req.body);
+        
+        if(!validationResult.success)
+            return res.status(400).json({error:validationResult.error.format()})
+
+        const {email,password}=validationResult.data;
+        const user = await userModel.findOne({
+            email
+        });
+        
+        if(!user)
+            return res.status(403).json({"message":"Invalid Username!"})
+
+        const passwordMatch = await bcrypt.compare(password,user.password);
+
+        if(!passwordMatch)
+            return res.status(403).json({"message":"Invalid Password!"})
+
         const token = jwt.sign({
-            id:userFound._id.toString()
+            id:user._id.toString()
         },JWT_SECRET)
 
-        res.json({token})
-    }else{
-        res.status(403).json({
-            "message":"Invalid Creds"
-        })
+        return res.json({token})
+
+    }catch(err){
+        return res.status(400).json({"message":err.message})           
     }
 }
 
