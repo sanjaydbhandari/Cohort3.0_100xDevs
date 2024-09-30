@@ -2,16 +2,24 @@ const jwt = require("jsonwebtoken")
 const JWT_SECRET = require('../config/config').JWT_SECRET;
 
 function auth(req,res,next){
-    const token = req.headers.Authorization;
-    const response = jwt.verify(token,JWT_SECRET);
+    try {
+        const authHeader = req.headers['authorization'];
+        if (!authHeader) {
+            return res.status(403).json({ message: "No token provided" });
+        }
+        const token = authHeader.split(' ')[1];
+        if (!token) {
+            return res.status(403).json({ message: "Malformed token" });
+        }
 
-    if(response){
-        req.userId = response.userId;
+        const response = jwt.verify(token, JWT_SECRET);
+        req.userId = response.id;
         next();
-    }else{
+    } catch (err) {
         res.status(403).json({
-            message:"Invalid Token"
-        })
+            message: "Invalid or expired token",
+            error: err.message  
+        });
     }
 }
 

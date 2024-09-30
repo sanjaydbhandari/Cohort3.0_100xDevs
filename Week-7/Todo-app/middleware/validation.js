@@ -20,8 +20,8 @@ const taskSchema = z.object({
     status: z.string().nonempty({ message: 'Status is required.' }),
     // z.enum(['InProgress', 'Pending', 'Completed']).nonempty({ message: 'Status is required.' }),
     deadline: z.string().nonempty({ message: 'Deadline is required.' }),
-    created_at: z.number().positive({ message: 'Timestamp must be a positive number.' }),
-    deleted: z.boolean(),
+    // created_at: z.number().positive({ message: 'Timestamp must be a positive number.' }),
+    // deleted: z.boolean(),
 });
 
 module.exports={
