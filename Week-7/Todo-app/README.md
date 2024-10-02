@@ -25,22 +25,7 @@ This is a Todo backend API built using Node.js, Mongoose for MongoDB interaction
 
 ## Routes
 
-The routes are protected by authentication middleware, and here’s a list of the main endpoints:
-
-```js
-const { Router } = require("express");
-const { auth } = require('../middleware/auth');
-const { insertTodo, fetchTodoById, updateTodo, deleteTodo, fetchTodos } = require('../controllers/todo.controller');
-const todoRouter = Router();
-
-todoRouter.get('/addTodo', auth, insertTodo);
-todoRouter.get('/fetchTodo/:id', auth, fetchTodoById);
-todoRouter.get('/fetchTodos', auth, fetchTodos);
-todoRouter.put('/updateTodo/:id', auth, updateTodo);
-todoRouter.delete('/deleteTodo/:id', auth, deleteTodo);
-
-module.exports = { todoRouter };
-```
+The routes are protected by authentication middleware, and here’s a list of the main endpoints
 
 ### Route Details
 
@@ -93,8 +78,9 @@ npm install
 3. Create a `.env` file in the root directory and add your environment variables:
 
 ```
+PORT=your_port_number
 JWT_SECRET=your_jwt_secret_key
-MONGO_URI=your_mongo_connection_string
+DB_URL=your_mongo_connection_string
 ```
 
 4. Run the development server:
