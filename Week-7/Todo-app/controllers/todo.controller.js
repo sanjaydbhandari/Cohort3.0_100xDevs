@@ -19,36 +19,69 @@ const insertTodo = async (req,res) => {
         });
 
         if(!newTodo)
-            res.status(400).json({"message":"Failed to insert Todo"})
-        res.status(200).json({message:"Todo inserted Succussfully"})           
+            return res.status(400).json({"message":"Failed to insert Todo"})
+        return res.status(200).json({message:"Todo inserted Succussfully"})           
     }catch(err){
-        res.status(400).json({"message":err.message})           
+        return res.status(400).json({"message":err.message})           
     }
 }
 
 const updateTodo = async (req,res) =>{
     try{
         const userId = req.userId;
-        const validationResult = todoModel.safeParse(req.body)
+        const {id} = req.params;
+        const validationResult = taskSchema.safeParse(req.body)
         if(!validationResult.success)
             return res.status(400).json({"error":validationResult.error.format()})
         console.log(validationResult.data);
-        // const updatedTodo = await taskSchema.findOneAndUpdate({userId,})
+        const updatedTodo = await todoModel.updateOne({userId,_id:id,deleted:false},{$set:validationResult.data});
+        if(updatedTodo.matchedCount === 0)
+            return res.status(404).json({ "message": "Todo not found" });
+        if(updatedTodo.modifiedCount === 0)
+            return res.status(400).json({ "message": "Failed to update Todo" });
+        return res.status(200).json({"message":"Todo updated successfully"})   
     }catch(err){
-        res.status(400).json({"message":err.message})           
+        return res.status(400).json({"message":err.message})           
+    }
+}
+
+const deleteTodo = async (req,res) =>{
+    try{
+        const userId = req.userId;
+        const {id} = req.params;
+        const updatedTodo = await todoModel.updateOne({userId,_id:id,deleted:false},{$set:{deleted:true}});
+        if(updatedTodo.matchedCount === 0)
+            return res.status(404).json({ "message": "Todo not found" });
+        if(updatedTodo.modifiedCount === 0)
+            return res.status(400).json({ "message": "Failed to delete Todo" });
+        return res.status(200).json({"message":"Todo deleted successfully"})   
+    }catch(err){
+        return res.status(400).json({"message":err.message})           
     }
 }
 
 const fetchTodoById = async (req,res) =>{
     try{
         const userId = req.userId;
-        const _id = req.params.id;
-        const todo =await todoModel.findOne({_id:_id});
+        const {id} = req.params;
+        let todo = await todoModel.findOne({_id :id,userId,deleted:false});
         if(!todo)
-            todo=[];
-        res.status(200).json({message:"Todo fetch Succussfully",data:todo})           
+            return res.status(404).json({message:"Todo not found"})           
+        return res.status(200).json({message:"Todo fetch Succussfully",data:todo})           
     }catch(err){
-        res.status(400).json({"message":err.message})           
+        return res.status(400).json({"message":err.message})           
     }
 }
-module.exports = {insertTodo,updateTodo,fetchTodoById}
+
+const fetchTodos = async (req,res) =>{
+    try{
+        const userId = req.userId;
+        let todo = await todoModel.find({userId:userId,deleted:false});
+        if(!todo)
+            todo=[];
+        return res.status(200).json({message:"All Todo fetch Succussfully",data:todo})           
+    }catch(err){
+        return res.status(400).json({"message":err.message})           
+    }
+}
+module.exports = {insertTodo,updateTodo,deleteTodo,fetchTodoById,fetchTodos}
