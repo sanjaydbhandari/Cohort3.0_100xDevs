@@ -1,4 +1,3 @@
-Here is a sample `README.md` for your project:
 
 ---
 
@@ -65,7 +64,7 @@ To run this project locally, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/todo-backend.git
+git clone <link>
 ```
 
 2. Install dependencies:
@@ -94,5 +93,3 @@ npm start
 This project is licensed under the MIT License.
 
 ---
-
-Feel free to update the repository links and any other specific details.
