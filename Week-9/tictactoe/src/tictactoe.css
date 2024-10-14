@@ -1,0 +1,38 @@
+.container p{
+    font-size: 20px;
+}
+
+.container span{
+    color: #ff0080;
+}
+
+button{
+    margin: 1rem;
+    color: #ff0080;
+}
+
+button:hover{
+    background-color: #ff0080;
+    outline: none;
+    border: none;
+    color: #fff;
+}
+
+.container .board .rows .boxes{
+    height: 100px;
+    width: 100px;
+    margin:3px;
+    background: #ff00ae55;
+    border-radius: .2rem;
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.container .board .rows .boxes:hover{
+    background-color: #ff0080;
+}
+
+.container .board .rows{
+    display: flex;
+    flex-direction: row;
+}
