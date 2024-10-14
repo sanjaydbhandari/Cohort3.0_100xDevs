@@ -2,10 +2,12 @@ import { useState,useRef } from 'react'
 import './tictactoe.css'
 
 let board = new Array(9).fill("");
-let pointsTable = [];
+
 function tictactoe () {
     const [lock,setLock] = useState(false);//if game wins by anyone then to make button unclickable
     const [count,setCount] = useState(0);//even for x and odd for O
+    const [point,setPoint] = useState([0,0])
+    console.log(point)
     const titleRef = useRef(null);
     const box1 = useRef(null);
     const box2 = useRef(null);
@@ -20,7 +22,6 @@ function tictactoe () {
     const box_area=[box1,box2,box3,box4,box5,box6,box7,box8,box9];
 
     function toggle(e,index){
-        // console.log(lock)
         if(lock)
             return 0;
         else if(count%2===0 && board[index]===""){
@@ -75,8 +76,10 @@ function tictactoe () {
         setLock(true);
         if(winner === 'X'){
             titleRef.current.innerHTML="Congratulations: <span>X win</span>"
+            setPoint([Number(point[0])+1,point[1]])
         }else{
             titleRef.current.innerHTML="Congratulations: <span>O win</span>"
+            setPoint([point[0],Number(point[1])+1])
         }
     }
 
@@ -91,6 +94,18 @@ function tictactoe () {
     }
     return(
         <div className="container">
+            <table className='pointstable'>
+                <tr>
+                    <th>X</th>
+                    <th>Total</th>
+                    <th>0</th>
+                </tr>
+                <tr>
+                    <td>{point[0]}</td>
+                    <td>{Number(point[0])+Number(point[1])}</td>
+                    <td>{point[1]}</td>
+                </tr>
+            </table>
             <p ref={titleRef}>Tic Tac Toe in <span>React</span></p>
             <div className="board">
                 <div className="rows">
