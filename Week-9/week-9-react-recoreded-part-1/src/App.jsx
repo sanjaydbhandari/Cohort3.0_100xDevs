@@ -18,6 +18,7 @@ function PostComponent(){
           <span className='username' style={{fontSize:"1rem"}}>Sanjay Bhandari</span>
           <span className='followers-count' style={{fontSize:".6rem"}}>1000 followers</span>
           <span className='post-timestamp' style={{fontSize:".6rem"}}>12 min</span>
+          <span className='post-timestamp' style={{fontSize:".6rem"}}>12 min</span>
         </div>
       </div>
         <div className="post-description">
