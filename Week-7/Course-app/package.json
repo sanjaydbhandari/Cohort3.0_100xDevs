@@ -14,6 +14,7 @@
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "course-app": "file:",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
