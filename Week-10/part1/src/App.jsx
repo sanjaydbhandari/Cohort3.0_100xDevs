@@ -1,12 +1,15 @@
 // import PropsDrilling from './PropsDrilling'
-import ContextAPI from './ContextAPI'
+// import ContextAPI from './ContextAPI'
+import ContextAPI1 from './ContextAPI1'
+
 
 function App() {
 
   return (
     <>
      {/* <PropsDrilling /> */}
-     <ContextAPI />
+     {/* <ContextAPI /> */}
+     <ContextAPI1></ContextAPI1>
     </>
   )
 }

@@ -1,13 +1,16 @@
+const db=require('./config/dbConnect.js')
 const express = require('express');
 const app = express();
 const config = require('./config/config');
 const PORT = config.PORT;
-const {dbConnect}=require('./config/dbConnect');
+const {auth} = require('./middleware/auth');
+const {dbConnect}=require("./config/dbConnect");
 const {todoRouter} = require('./routes/todo.route');
 const {userRouter} = require('./routes/user.route');
 
-app.use(express.json());
 console.log(dbConnect());
+app.use(express.json());
+app.use(auth)
 app.use("/api/v1/users",userRouter);
 app.use("/api/v1/todos",todoRouter);
 
