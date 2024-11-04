@@ -41,8 +41,8 @@ function App() {
               <li key={t.id}>
               <p>{t.todo}</p>
               <div className="action">
-              <button onClick={handleEdit(t.id)}>Edit</button>
-              <button onClick={handleDelete(t.id)}>Delete</button>
+              <button onClick={()=>handleEdit(t.id)}>Edit</button>
+              <button onClick={()=>handleDelete(t.id)}>Delete</button>
               </div>
             </li>
             ))
