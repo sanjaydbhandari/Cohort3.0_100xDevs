@@ -5,25 +5,39 @@ function App() {
 
   const [todo,setTodo] = useState("");
   const [todos,setTodos] = useState([]);
+  const [editId,setEditId] = useState(-1)
 
-  useEffect(()=>{
-    console.log(todos)
-  },[todos])
+  // useEffect(()=>{
+  //   console.log(todos)
+  // },[todos])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(todo !== ''){
-      await setTodos([...todos,{id:`${Date.now()}`,todo}])
+    if(editId !== -1){
+      const editTodo = todos.find((t)=>t.id===editId)
+      const updatedTodo = todos.map((t)=>t.id===editTodo.id ? {id:editTodo.id,todo}: {id:t.id,todo:t.todo})
+      if(updatedTodo){
+        setTodos([...updatedTodo])
+        setTodo('')
+        setEditId(-1)
+      }
+    }else{
+      if(todo !== ''){
+        await setTodos([...todos,{id:`${Date.now()}`,todo}])
+      }
+      setTodo("")
     }
-    setTodo("")
   }
 
-  const handleEdit= () =>{
-
+  const handleEdit= (id) =>{
+    const editTodo = todos.find((t)=>t.id===id)
+    setTodo(editTodo.todo)
+    setEditId(editTodo.id)
   }
 
-  const handleDelete = () => {
-    
+  const handleDelete = (id) => {
+    const editedTodo = todos.filter((t)=>t.id!==id);
+    setTodos([...editedTodo])
   }
 
   return (
@@ -32,7 +46,7 @@ function App() {
         <h1>My Todo App</h1>
         <form className="input-container" onSubmit={handleSubmit}>
           <input type="text" placeholder='enter todo' value={todo} onChange={(e)=>{setTodo(e.target.value)}}/>
-          <button type='submit'>Go</button>
+          <button type='submit'>{editId === -1?'Go':'Edit'}</button>
         </form>
         <div className="todolist-container">
           <ul>
@@ -48,7 +62,6 @@ function App() {
             ))
           }
           </ul>
-          
         </div>
       </div>
     </>
