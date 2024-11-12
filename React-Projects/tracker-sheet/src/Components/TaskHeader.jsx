@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Tag from './Tag'
 
 const languages = [{
     name:"HTML",
@@ -15,21 +16,37 @@ const languages = [{
 }]
 
 const TaskHeader = () => {
+
+    const [todo,setTodo] = useState([{
+
+    }]);
+
+    const [task,setTask] = useState({
+        task:"",
+        status:""
+    })
+
+    const handleChange = (e) => {
+        const {name,value} = e.target;
+        setTask(prev=>({...prev,[name]:value}))
+        console.log(task)
+    }
+
   return (
     <div>
         <div className="task-container flex flex-col justify-center items-center min-h-[200px] bg-gray-400 border-b-2 border-gray-900">
             <div className="flex flex-col w-[600px] ">
-            <input type="text" className='min-w-[500px] px-4 py-2 outline-none rounded-lg text-gray-800' placeholder='Enter the Task'/>
+            <input type="text" name="task" className='min-w-[500px] px-4 py-2 outline-none rounded-lg text-gray-800' placeholder='Enter the Task' onChange={handleChange}/>
             <div className="task-bottom flex flex-row justify-between mt-5">
                 <div className="task-bottom-button flex gap-2 flex-wrap">
                     {
                         languages.map((language,index)=>(
-                            <button className={`px-3 py-2 rounded-md text-white`} style={{"background":language.color}}  key={index} >{language.name}</button>
+                            <Tag tagname={language["name"]} color={language["color"]} index={index}/>
                         ))
                     }
                 </div>
                 <div className="flex gap-2">
-                <select className='task-status outline-none px-3 py-2 rounded-lg border-solid border-2 border-gray-400 text-gray-800'>
+                <select name="status" className='task-status outline-none px-3 py-2 rounded-lg border-solid border-2 border-gray-400 text-gray-800' onChange={handleChange}>
                     <option value="pending">Pending</option>
                     <option value="inprogress">In Progress</option>
                     <option value="done">Done</option>

@@ -35,7 +35,7 @@ const TodoContainer = () => {
   return (
     <div className="flex justify-between gap-10 items-center m-[30px]">
       {todolist.map((todo, index) => (
-        <TodoList todo={todo}/>
+        <TodoList todo={todo} index={index}/>
       ))}
     </div>
   );
