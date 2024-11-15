@@ -17,13 +17,11 @@ const languages = [{
 
 const TaskHeader = () => {
 
-    const [todo,setTodo] = useState([{
-
-    }]);
+    const [todo,setTodo] = useState([]);
 
     const [task,setTask] = useState({
         task:"",
-        status:""
+        status:"pending"
     })
 
     const handleChange = (e) => {

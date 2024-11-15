@@ -15,7 +15,7 @@ This is a simple Todo API built using Node.js and Express.js. The API allows use
 1. Clone the repository to your local machine.
 
 ```bash 
-git clone <repository-url>
+git clone https://github.com/sanjaydbhandari/Cohort3.0_100xDevs/tree/master/Week-4/Todo_Backend
 cd todo-app
 ```
 2. Install dependencies.

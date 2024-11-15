@@ -64,7 +64,7 @@ To run this project locally, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone <link>
+git clone https://github.com/sanjaydbhandari/Cohort3.0_100xDevs/tree/master/Week-7/Todo-app
 ```
 
 2. Install dependencies:
