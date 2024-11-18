@@ -1,42 +1,12 @@
 import React from "react";
-import TodoList from "./TodoList";
+import TodoList from "./TodoList"; 
 
-const todolist = [
-  {
-    title: "To Do",
-    color: "blue",
-    tasks: {
-      task: "Change the delete button",
-      language: ["HTML", "CSS"],
-    },
-    status: "Todo",
-  },
-  {
-    title: "Doing",
-    color: "yellow",
-    tasks: {
-      task: "Change the delete button",
-      language: ["HTML", "CSS"],
-    },
-    status: "Doing",
-  },
-  {
-    title: "Done",
-    color: "green",
-    tasks: {
-      task: "Change the delete button",
-      language: ["HTML", "CSS"],
-    },
-    status: "Done",
-  },
-];
-
-const TodoContainer = () => {
+const TodoContainer = ({tasks}) => {
   return (
     <div className="flex justify-between gap-10 items-center m-[30px]">
-      {todolist.map((todo, index) => (
-        <TodoList todo={todo} index={index}/>
-      ))}
+        <TodoList status="Pending" tasks={tasks} />
+        <TodoList status="InProgress" tasks={tasks}/>
+        <TodoList status="Done" tasks={tasks}/>
     </div>
   );
 };
